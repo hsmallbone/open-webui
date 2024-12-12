@@ -13,6 +13,8 @@
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
 	import SensitiveInput from '$lib/components/common/SensitiveInput.svelte';
 
+	import { WEBUI_DEFAULT_USER_ICON } from '$lib/constants';
+
 	const i18n = getContext('i18n');
 
 	export let saveHandler: Function;
@@ -217,7 +219,7 @@
 						<button
 							class=" text-xs text-center text-gray-800 dark:text-gray-400 rounded-lg px-2 py-1"
 							on:click={async () => {
-								profileImageUrl = '/user.png';
+								profileImageUrl = WEBUI_DEFAULT_USER_ICON;
 							}}>{$i18n.t('Remove')}</button
 						>
 					</div>

@@ -14,7 +14,7 @@ from open_webui.models.users import (
 
 from open_webui.socket.main import get_active_status_by_user_id
 from open_webui.constants import ERROR_MESSAGES
-from open_webui.env import SRC_LOG_LEVELS
+from open_webui.env import (SRC_LOG_LEVELS, FRONTEND_APP_ROOT)
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 from pydantic import BaseModel
 from open_webui.utils.auth import get_admin_user, get_password_hash, get_verified_user
@@ -223,7 +223,7 @@ async def get_user_by_id(user_id: str, user=Depends(get_verified_user)):
         return UserResponse(
             **{
                 "name": user.name,
-                "profile_image_url": user.profile_image_url,
+                "profile_image_url": FRONTEND_APP_ROOT+'/'+user.profile_image_url,
                 "active": get_active_status_by_user_id(user_id),
             }
         )
@@ -267,7 +267,7 @@ async def update_user_by_id(
             {
                 "name": form_data.name,
                 "email": form_data.email.lower(),
-                "profile_image_url": form_data.profile_image_url,
+                "profile_image_url": form_data.profile_image_url.replace(FRONTEND_APP_ROOT, ''),
             },
         )
 

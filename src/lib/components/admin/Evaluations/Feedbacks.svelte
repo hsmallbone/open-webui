@@ -19,7 +19,7 @@
 	import Pagination from '$lib/components/common/Pagination.svelte';
 	import FeedbackMenu from './FeedbackMenu.svelte';
 	import EllipsisHorizontal from '$lib/components/icons/EllipsisHorizontal.svelte';
-
+	import {WEBUI_DEFAULT_USER_ICON} from '$lib/constants';
 	export let feedbacks = [];
 
 	let page = 1;
@@ -171,7 +171,7 @@
 								<Tooltip content={feedback?.user?.name}>
 									<div class="flex-shrink-0">
 										<img
-											src={feedback?.user?.profile_image_url ?? '/user.png'}
+											src={feedback?.user?.profile_image_url ?? WEBUI_DEFAULT_USER_ICON}
 											alt={feedback?.user?.name}
 											class="size-5 rounded-full object-cover shrink-0"
 										/>

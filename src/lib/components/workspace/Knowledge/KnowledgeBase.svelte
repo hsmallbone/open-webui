@@ -32,7 +32,7 @@
 
 	import AddContentMenu from './KnowledgeBase/AddContentMenu.svelte';
 	import AddTextContentModal from './KnowledgeBase/AddTextContentModal.svelte';
-
+import {WEBUI_BASE_PATH} from '$lib/constants';
 	import SyncConfirmDialog from '../../common/ConfirmDialog.svelte';
 	import RichTextInput from '$lib/components/common/RichTextInput.svelte';
 	import EllipsisVertical from '$lib/components/icons/EllipsisVertical.svelte';
@@ -525,7 +525,7 @@
 		if (res) {
 			knowledge = res;
 		} else {
-			goto('/workspace/knowledge');
+			goto(WEBUI_BASE_PATH+'/workspace/knowledge');
 		}
 
 		const dropZone = document.querySelector('body');
@@ -687,7 +687,7 @@
 								<div class=" flex-1 text-xl font-medium">
 									<a
 										class="hover:text-gray-500 hover:dark:text-gray-100 hover:underline flex-grow line-clamp-1"
-										href={selectedFile.id ? `/api/v1/files/${selectedFile.id}/content` : '#'}
+										href={selectedFile.id ? `${WEBUI_BASE_PATH}/api/v1/files/${selectedFile.id}/content` : '#'}
 										target="_blank"
 									>
 										{selectedFile?.meta?.name}

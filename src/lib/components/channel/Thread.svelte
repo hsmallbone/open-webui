@@ -10,6 +10,7 @@
 	import Messages from './Messages.svelte';
 	import { onDestroy, onMount, tick } from 'svelte';
 	import { toast } from 'svelte-sonner';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	export let threadId = null;
 	export let channel = null;
@@ -49,7 +50,7 @@
 			await tick();
 			scrollToBottom();
 		} else {
-			goto('/');
+			goto(WEBUI_BASE_PATH + '/');
 		}
 	};
 

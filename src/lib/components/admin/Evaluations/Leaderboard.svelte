@@ -9,6 +9,8 @@
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
 	import MagnifyingGlass from '$lib/components/icons/MagnifyingGlass.svelte';
 
+	import { WEBUI_BASE_PATH } from '$lib/constants';
+
 	const i18n = getContext('i18n');
 
 	const EMBEDDING_MODEL = 'TaylorAI/bge-micro-v2';
@@ -349,7 +351,7 @@
 							<div class="flex items-center gap-2">
 								<div class="flex-shrink-0">
 									<img
-										src={model?.info?.meta?.profile_image_url ?? '/favicon.png'}
+										src={model?.info?.meta?.profile_image_url ?? WEBUI_BASE_PATH + '/favicon.png'}
 										alt={model.name}
 										class="size-5 rounded-full object-cover shrink-0"
 									/>

@@ -265,6 +265,7 @@ from open_webui.env import (
     CHANGELOG,
     GLOBAL_LOG_LEVEL,
     SAFE_MODE,
+    FRONTEND_APP_ROOT,
     SRC_LOG_LEVELS,
     VERSION,
     WEBUI_BUILD_HASH,
@@ -355,6 +356,7 @@ app = FastAPI(
     redoc_url=None,
     lifespan=lifespan,
 )
+#app = FastAPI(root_path=FRONTEND_APP_ROOT, docs_url="/docs" if ENV == "dev" else None, redoc_url=None, lifespan=lifespan)
 
 app.state.config = AppConfig()
 
@@ -1124,13 +1126,13 @@ async def get_manifest_json():
         "orientation": "natural",
         "icons": [
             {
-                "src": "/static/logo.png",
+                "src": FRONTEND_APP_ROOT+"/static/logo.png",
                 "type": "image/png",
                 "sizes": "500x500",
                 "purpose": "any",
             },
             {
-                "src": "/static/logo.png",
+                "src": FRONTEND_APP_ROOT+"/static/logo.png",
                 "type": "image/png",
                 "sizes": "500x500",
                 "purpose": "maskable",
@@ -1146,8 +1148,8 @@ async def get_opensearch_xml():
     <ShortName>{WEBUI_NAME}</ShortName>
     <Description>Search {WEBUI_NAME}</Description>
     <InputEncoding>UTF-8</InputEncoding>
-    <Image width="16" height="16" type="image/x-icon">{app.state.config.WEBUI_URL}/static/favicon.png</Image>
-    <Url type="text/html" method="get" template="{app.state.config.WEBUI_URL}/?q={"{searchTerms}"}"/>
+    <Image width="16" height="16" type="image/x-icon">{app.state.config.WEBUI_URL}/{FRONTEND_APP_ROOT}/static/favicon.png</Image>
+    <Url type="text/html" method="get" template="{app.state.config.WEBUI_URL}/{FRONTEND_APP_ROOT}/?q={"{searchTerms}"}"/>
     <moz:SearchForm>{app.state.config.WEBUI_URL}</moz:SearchForm>
     </OpenSearchDescription>
     """

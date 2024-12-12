@@ -6,6 +6,7 @@
 	import { user } from '$lib/stores';
 
 	import { getUsers } from '$lib/apis/users';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	import UserList from './Users/UserList.svelte';
 	import Groups from './Users/Groups.svelte';
@@ -27,7 +28,7 @@
 
 	onMount(async () => {
 		if ($user?.role !== 'admin') {
-			await goto('/');
+			await goto(WEBUI_BASE_PATH+'/');
 		} else {
 			users = await getUsers(localStorage.token);
 		}

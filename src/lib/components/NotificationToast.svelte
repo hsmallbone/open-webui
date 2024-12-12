@@ -5,6 +5,8 @@
 	import { marked } from 'marked';
 	import { createEventDispatcher, onMount } from 'svelte';
 
+	import { WEBUI_BASE_URL } from '$lib/constants';
+
 	const dispatch = createEventDispatcher();
 
 	export let onClick: Function = () => {};
@@ -20,7 +22,7 @@
 			if (!$playingNotificationSound && $isLastActiveTab) {
 				playingNotificationSound.set(true);
 
-				const audio = new Audio(`/audio/notification.mp3`);
+				const audio = new Audio(WEBUI_BASE_URL + `/audio/notification.mp3`);
 				audio.play().finally(() => {
 					// Ensure the global state is reset after the sound finishes
 					playingNotificationSound.set(false);
@@ -38,7 +40,7 @@
 	}}
 >
 	<div class="flex-shrink-0 self-top -translate-y-0.5">
-		<img src={'/static/favicon.png'} alt="favicon" class="size-7 rounded-full" />
+		<img src={WEBUI_BASE_URL + '/static/favicon.png'} alt="favicon" class="size-7 rounded-full" />
 	</div>
 
 	<div>

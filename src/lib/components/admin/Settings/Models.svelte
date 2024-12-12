@@ -26,6 +26,7 @@
 	import ConfirmDialog from '$lib/components/common/ConfirmDialog.svelte';
 	import Cog6 from '$lib/components/icons/Cog6.svelte';
 	import ConfigureModelsModal from './Models/ConfigureModelsModal.svelte';
+	import { WEBUI_BASE_URL } from '$lib/constants';
 
 	let importFiles;
 	let modelsImportInputElement: HTMLInputElement;
@@ -201,7 +202,7 @@
 										: 'opacity-50 dark:opacity-50'} "
 								>
 									<img
-										src={model?.meta?.profile_image_url ?? '/static/favicon.png'}
+										src={model?.meta?.profile_image_url ?? WEBUI_BASE_URL + '/static/favicon.png'}
 										alt="modelfile profile"
 										class=" rounded-full w-full h-auto object-cover"
 									/>

@@ -14,6 +14,7 @@
 	import Drawer from '../common/Drawer.svelte';
 	import EllipsisVertical from '../icons/EllipsisVertical.svelte';
 	import Thread from './Thread.svelte';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	export let id = '';
 
@@ -64,7 +65,7 @@
 				}
 			}
 		} else {
-			goto('/');
+			goto(WEBUI_BASE_PATH + '/');
 		}
 	};
 
