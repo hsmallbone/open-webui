@@ -17,6 +17,8 @@
 	import Modal from '$lib/components/common/Modal.svelte';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
 	import UnarchiveAllConfirmDialog from '$lib/components/common/ConfirmDialog.svelte';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
+
 	const i18n = getContext('i18n');
 
 	export let show = false;
@@ -150,7 +152,7 @@
 													'border-b'} dark:bg-gray-900 dark:border-gray-850 text-xs"
 											>
 												<td class="px-3 py-1 w-2/3">
-													<a href="/c/{chat.id}" target="_blank">
+													<a href="{WEBUI_BASE_PATH}/c/{chat.id}" target="_blank">
 														<div class=" underline line-clamp-1">
 															{chat.title}
 														</div>

@@ -13,7 +13,7 @@
 	import PyodideWorker from '$lib/workers/pyodide.worker?worker';
 	import CodeEditor from '$lib/components/common/CodeEditor.svelte';
 	import SvgPanZoom from '$lib/components/common/SVGPanZoom.svelte';
-
+	import {WEBUI_BASE_PATH} from '$lib/constants';
 	const i18n = getContext('i18n');
 	const dispatch = createEventDispatcher();
 
@@ -121,7 +121,7 @@
 			document.pyodideMplTarget = document.getElementById(`plt-canvas-${id}`);
 
 			let pyodide = await loadPyodide({
-				indexURL: '/pyodide/',
+				indexURL: WEBUI_BASE_PATH+'/pyodide/',
 				stdout: (text) => {
 					console.log('Python output:', text);
 

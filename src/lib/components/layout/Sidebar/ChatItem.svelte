@@ -34,6 +34,7 @@
 	import GarbageBin from '$lib/components/icons/GarbageBin.svelte';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
 	import ArchiveBox from '$lib/components/icons/ArchiveBox.svelte';
+import { WEBUI_BASE_PATH } from '$lib/constants';
 	import DragGhost from '$lib/components/common/DragGhost.svelte';
 	import Check from '$lib/components/icons/Check.svelte';
 	import XMark from '$lib/components/icons/XMark.svelte';
@@ -93,7 +94,7 @@
 		});
 
 		if (res) {
-			goto(`/c/${res.id}`);
+			goto(WEBUI_BASE_PATH+`/c/${res.id}`);
 
 			currentChatPage.set(1);
 			await chats.set(await getChatList(localStorage.token, $currentChatPage));
@@ -112,7 +113,7 @@
 			if ($chatId === id) {
 				await chatId.set('');
 				await tick();
-				goto('/');
+				goto(WEBUI_BASE_PATH+'/');
 			}
 
 			dispatch('change');
@@ -244,7 +245,7 @@
 				: selected
 					? 'bg-gray-100 dark:bg-gray-950'
 					: ' group-hover:bg-gray-100 dark:group-hover:bg-gray-950'}  whitespace-nowrap text-ellipsis"
-			href="/c/{id}"
+			href="{WEBUI_BASE_PATH}/c/{id}"
 			on:click={() => {
 				dispatch('select');
 

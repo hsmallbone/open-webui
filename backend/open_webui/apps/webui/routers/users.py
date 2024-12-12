@@ -11,7 +11,7 @@ from open_webui.apps.webui.models.users import (
     UserUpdateForm,
 )
 from open_webui.constants import ERROR_MESSAGES
-from open_webui.env import SRC_LOG_LEVELS
+from open_webui.env import (SRC_LOG_LEVELS, FRONTEND_APP_ROOT)
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 from pydantic import BaseModel
 from open_webui.utils.utils import get_admin_user, get_password_hash, get_verified_user
@@ -212,7 +212,7 @@ async def get_user_by_id(user_id: str, user=Depends(get_verified_user)):
     user = Users.get_user_by_id(user_id)
 
     if user:
-        return UserResponse(name=user.name, profile_image_url=user.profile_image_url)
+        return UserResponse(name=user.name, profile_image_url=FRONTEND_APP_ROOT+'/'+user.profile_image_url)
     else:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -253,7 +253,7 @@ async def update_user_by_id(
             {
                 "name": form_data.name,
                 "email": form_data.email.lower(),
-                "profile_image_url": form_data.profile_image_url,
+                "profile_image_url": form_data.profile_image_url.replace(FRONTEND_APP_ROOT, ''),
             },
         )
 

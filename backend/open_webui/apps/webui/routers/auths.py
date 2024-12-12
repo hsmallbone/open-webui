@@ -27,6 +27,7 @@ from open_webui.env import (
     WEBUI_SESSION_COOKIE_SAME_SITE,
     WEBUI_SESSION_COOKIE_SECURE,
     SRC_LOG_LEVELS,
+    FRONTEND_APP_ROOT
 )
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 from fastapi.responses import Response
@@ -106,7 +107,7 @@ async def get_session_user(
         "email": user.email,
         "name": user.name,
         "role": user.role,
-        "profile_image_url": user.profile_image_url,
+        "profile_image_url": FRONTEND_APP_ROOT + '/' + user.profile_image_url,
         "permissions": user_permissions,
     }
 
@@ -123,7 +124,7 @@ async def update_profile(
     if session_user:
         user = Users.update_user_by_id(
             session_user.id,
-            {"profile_image_url": form_data.profile_image_url, "name": form_data.name},
+            {"profile_image_url": form_data.profile_image_url.replace(FRONTEND_APP_ROOT, ''), "name": form_data.name},
         )
         if user:
             return user
@@ -382,7 +383,7 @@ async def signin(request: Request, response: Response, form_data: SigninForm):
             "email": user.email,
             "name": user.name,
             "role": user.role,
-            "profile_image_url": user.profile_image_url,
+            "profile_image_url": FRONTEND_APP_ROOT+'/'+user.profile_image_url,
             "permissions": user_permissions,
         }
     else:
@@ -488,7 +489,7 @@ async def signup(request: Request, response: Response, form_data: SignupForm):
                 "email": user.email,
                 "name": user.name,
                 "role": user.role,
-                "profile_image_url": user.profile_image_url,
+                "profile_image_url": FRONTEND_APP_ROOT+'/'+user.profile_image_url,
                 "permissions": user_permissions,
             }
         else:
@@ -538,7 +539,7 @@ async def add_user(form_data: AddUserForm, user=Depends(get_admin_user)):
                 "email": user.email,
                 "name": user.name,
                 "role": user.role,
-                "profile_image_url": user.profile_image_url,
+                "profile_image_url": FRONTEND_APP_ROOT+'/'+user.profile_image_url,
             }
         else:
             raise HTTPException(500, detail=ERROR_MESSAGES.CREATE_USER_ERROR)

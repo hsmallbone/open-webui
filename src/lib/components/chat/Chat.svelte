@@ -12,7 +12,7 @@
 
 	import { get, type Unsubscriber, type Writable } from 'svelte/store';
 	import type { i18n as i18nType } from 'i18next';
-	import { WEBUI_BASE_URL } from '$lib/constants';
+	import { WEBUI_BASE_URL, WEBUI_BASE_PATH } from '$lib/constants';
 
 	import {
 		chatId,
@@ -138,7 +138,7 @@
 				const chatInput = document.getElementById('chat-input');
 				chatInput?.focus();
 			} else {
-				await goto('/');
+				await goto(WEBUI_BASE_PATH+'/');
 			}
 		})();
 	}
@@ -346,7 +346,7 @@
 			});
 		} else {
 			if ($temporaryChatEnabled) {
-				await goto('/');
+				await goto(WEBUI_BASE_PATH+'/');
 			}
 		}
 
@@ -580,7 +580,7 @@
 	const loadChat = async () => {
 		chatId.set(chatIdProp);
 		chat = await getChatById(localStorage.token, $chatId).catch(async (error) => {
-			await goto('/');
+			await goto(WEBUI_BASE_PATH+'/');
 			return null;
 		});
 
@@ -1454,8 +1454,7 @@
 
 		const messages = createMessagesList(responseMessageId);
 		if (messages.length == 2 && messages.at(-1).content !== '' && selectedModels[0] === model.id) {
-			window.history.replaceState(history.state, '', `/c/${_chatId}`);
-
+			window.history.replaceState(history.state, '', WEBUI_BASE_PATH+`/c/${_chatId}`);
 			const title = await generateChatTitle(messages);
 			await setChatTitle(_chatId, title);
 
@@ -1773,8 +1772,7 @@
 
 		const messages = createMessagesList(responseMessageId);
 		if (messages.length == 2 && selectedModels[0] === model.id) {
-			window.history.replaceState(history.state, '', `/c/${_chatId}`);
-
+			window.history.replaceState(history.state, '', WEBUI_BASE_PATH+`/c/${_chatId}`);
 			const title = await generateChatTitle(messages);
 			await setChatTitle(_chatId, title);
 

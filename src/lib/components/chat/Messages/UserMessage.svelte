@@ -10,6 +10,7 @@
 	import Name from './Name.svelte';
 	import ProfileImage from './ProfileImage.svelte';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
+	import { WEBUI_DEFAULT_USER_ICON } from '$lib/constants';
 	import FileItem from '$lib/components/common/FileItem.svelte';
 	import Markdown from './Markdown.svelte';
 	import Image from '$lib/components/common/Image.svelte';
@@ -89,8 +90,8 @@
 			<ProfileImage
 				src={message.user
 					? ($models.find((m) => m.id === message.user)?.info?.meta?.profile_image_url ??
-						'/user.png')
-					: (user?.profile_image_url ?? '/user.png')}
+						WEBUI_DEFAULT_USER_ICON)
+					: (user?.profile_image_url ?? WEBUI_DEFAULT_USER_ICON)}
 				className={'size-8'}
 			/>
 		</div>

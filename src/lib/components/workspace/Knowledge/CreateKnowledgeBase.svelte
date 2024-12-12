@@ -7,7 +7,7 @@
 	import { toast } from 'svelte-sonner';
 	import { knowledge } from '$lib/stores';
 	import AccessControl from '../common/AccessControl.svelte';
-
+import {WEBUI_BASE_PATH} from '$lib/constants';
 	let loading = false;
 
 	let name = '';
@@ -37,7 +37,7 @@
 		if (res) {
 			toast.success($i18n.t('Knowledge created successfully.'));
 			knowledge.set(await getKnowledgeBases(localStorage.token));
-			goto(`/workspace/knowledge/${res.id}`);
+			goto(WEBUI_BASE_PATH+`/workspace/knowledge/${res.id}`);
 		}
 
 		loading = false;
@@ -48,7 +48,7 @@
 	<button
 		class="flex space-x-1"
 		on:click={() => {
-			goto('/workspace/knowledge');
+			goto(WEBUI_BASE_PATH+'/workspace/knowledge');
 		}}
 	>
 		<div class=" self-center">

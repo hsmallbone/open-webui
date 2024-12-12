@@ -11,6 +11,7 @@ from open_webui.env import (
     ENABLE_WEBSOCKET_SUPPORT,
     WEBSOCKET_MANAGER,
     WEBSOCKET_REDIS_URL,
+    FRONTEND_APP_ROOT
 )
 from open_webui.utils.utils import decode_token
 from open_webui.apps.socket.utils import RedisDict
@@ -91,7 +92,7 @@ async def periodic_usage_pool_cleanup():
 
         await asyncio.sleep(TIMEOUT_DURATION)
 
-
+print ('Mounting socket at /ws/socket.io')
 app = socketio.ASGIApp(
     sio,
     socketio_path="/ws/socket.io",

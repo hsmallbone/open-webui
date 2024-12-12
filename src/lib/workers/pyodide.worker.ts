@@ -19,7 +19,7 @@ async function loadPyodideAndPackages(packages: string[] = []) {
 	self.result = null;
 
 	self.pyodide = await loadPyodide({
-		indexURL: '/pyodide/',
+		indexURL: '/@098555d4-163c-464d-9936-98d084e61beb@/pyodide/',
 		stdout: (text) => {
 			console.log('Python output:', text);
 
