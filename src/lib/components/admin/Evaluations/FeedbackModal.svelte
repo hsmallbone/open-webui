@@ -6,7 +6,7 @@
 	import { getFeedbackById } from '$lib/apis/evaluations';
 	import { toast } from 'svelte-sonner';
 	import Spinner from '$lib/components/common/Spinner.svelte';
-
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 	export let show = false;
 	export let selectedFeedback = null;
 
@@ -59,7 +59,7 @@
 
 							<div class="flex-1 text-xs">
 								<a
-									href={`/s/${selectedFeedback?.meta?.chat_id}`}
+									href={`${WEBUI_BASE_PATH}/s/${selectedFeedback?.meta?.chat_id}`}
 									class=" hover:underline"
 									target="_blank"
 								>

@@ -36,6 +36,7 @@
 	import XMark from '../icons/XMark.svelte';
 	import AddToolMenu from './Tools/AddToolMenu.svelte';
 	import ImportModal from '../ImportModal.svelte';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 	import ViewSelector from './common/ViewSelector.svelte';
 	import Badge from '$lib/components/common/Badge.svelte';
 
@@ -126,7 +127,7 @@
 				id: `${_tool.id}_clone`,
 				name: `${_tool.name} (Clone)`
 			});
-			goto('/workspace/tools/create');
+			goto(WEBUI_BASE_PATH + '/workspace/tools/create');
 		}
 	};
 
@@ -211,7 +212,7 @@
 		sessionStorage.tool = JSON.stringify({
 			...tool
 		});
-		goto('/workspace/tools/create');
+		goto(WEBUI_BASE_PATH + '/workspace/tools/create');
 	}}
 	loadUrlHandler={async (url) => {
 		return await loadToolByUrl(localStorage.token, url);
@@ -285,7 +286,7 @@
 				{#if $user?.role === 'admin'}
 					<AddToolMenu
 						createHandler={() => {
-							goto('/workspace/tools/create');
+							goto(WEBUI_BASE_PATH + '/workspace/tools/create');
 						}}
 						importFromLinkHandler={() => {
 							showImportModal = true;
@@ -302,7 +303,7 @@
 				{:else}
 					<a
 						class=" px-2 py-1.5 rounded-xl bg-black text-white dark:bg-white dark:text-black transition font-medium text-sm flex items-center"
-						href="/workspace/tools/create"
+						href="{WEBUI_BASE_PATH}/workspace/tools/create"
 					>
 						<Plus className="size-3" strokeWidth="2.5" />
 
@@ -382,7 +383,7 @@
 							{#if tool.write_access}
 								<a
 									class=" flex flex-1 space-x-3.5 cursor-pointer w-full"
-									href={`/workspace/tools/edit?id=${encodeURIComponent(tool.id)}`}
+									href={`${WEBUI_BASE_PATH}/workspace/tools/edit?id=${encodeURIComponent(tool.id)}`}
 								>
 									<div class="flex items-center text-left">
 										<div class=" flex-1 self-center">
@@ -520,7 +521,7 @@
 
 										<ToolMenu
 											editHandler={() => {
-												goto(`/workspace/tools/edit?id=${encodeURIComponent(tool.id)}`);
+												goto(`${WEBUI_BASE_PATH}/workspace/tools/edit?id=${encodeURIComponent(tool.id)}`);
 											}}
 											shareHandler={() => {
 												shareHandler(tool);

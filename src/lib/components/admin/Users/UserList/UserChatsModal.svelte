@@ -4,6 +4,7 @@
 
 	import dayjs from 'dayjs';
 	import localizedFormat from 'dayjs/plugin/localizedFormat';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	dayjs.extend(localizedFormat);
 

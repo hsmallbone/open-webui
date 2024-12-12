@@ -12,7 +12,7 @@
 	const i18n = getContext('i18n');
 
 	import { WEBUI_NAME, config, mobile, models as _models, settings, user } from '$lib/stores';
-	import { WEBUI_API_BASE_URL, WEBUI_BASE_URL } from '$lib/constants';
+	import { WEBUI_API_BASE_URL, WEBUI_BASE_PATH } from '$lib/constants';
 	import {
 		createNewModel,
 		deleteModelById,
@@ -139,7 +139,7 @@
 			id: `${model.id}-clone`,
 			name: `${model.name} (Clone)`
 		});
-		goto('/workspace/models/create');
+		goto(WEBUI_BASE_PATH + '/workspace/models/create');
 	};
 
 	const shareModelHandler = async (model) => {
@@ -470,7 +470,7 @@
 				{/if}
 				<a
 					class=" px-2 py-1.5 rounded-xl bg-black text-white dark:bg-white dark:text-black transition font-medium text-sm flex items-center"
-					href="/workspace/models/create"
+					href="{WEBUI_BASE_PATH}/workspace/models/create"
 				>
 					<Plus className="size-3" strokeWidth="2.5" />
 
@@ -631,7 +631,9 @@
 							id="model-item-{model.id}"
 							on:click={() => {
 								if (model.write_access) {
-									goto(`/workspace/models/edit?id=${encodeURIComponent(model.id)}`);
+									goto(
+										`${WEBUI_BASE_PATH}/workspace/models/edit?id=${encodeURIComponent(model.id)}`
+									);
 								}
 							}}
 						>
@@ -664,7 +666,7 @@
 												<Tooltip content={model.name} className=" w-fit" placement="top-start">
 													<a
 														class=" font-medium line-clamp-1 hover:underline capitalize"
-														href={`/?models=${encodeURIComponent(model.id)}`}
+														href={`${WEBUI_BASE_PATH}/?models=${encodeURIComponent(model.id)}`}
 													>
 														{model.name}
 													</a>
@@ -722,7 +724,7 @@
 																	writeAccess={model.write_access}
 																	editHandler={() => {
 																		goto(
-																			`/workspace/models/edit?id=${encodeURIComponent(model.id)}`
+																			`${WEBUI_BASE_PATH}/workspace/models/edit?id=${encodeURIComponent(model.id)}`
 																		);
 																	}}
 																	shareHandler={() => {

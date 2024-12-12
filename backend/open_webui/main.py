@@ -2440,6 +2440,7 @@ async def get_manifest_json():
             r.raise_for_status()
             return await r.json()
     else:
+        from open_webui.env import FRONTEND_APP_ROOT
         return {
             'name': app.state.WEBUI_NAME,
             'short_name': app.state.WEBUI_NAME,
@@ -2449,16 +2450,16 @@ async def get_manifest_json():
             'background_color': '#343541',
             'icons': [
                 {
-                    'src': '/static/logo.png',
-                    'type': 'image/png',
-                    'sizes': '500x500',
-                    'purpose': 'any',
+                    "src": FRONTEND_APP_ROOT+"/static/logo.png",
+                    "type": "image/png",
+                    "sizes": "500x500",
+                    "purpose": "any",
                 },
                 {
-                    'src': '/static/logo.png',
-                    'type': 'image/png',
-                    'sizes': '500x500',
-                    'purpose': 'maskable',
+                    "src": FRONTEND_APP_ROOT+"/static/logo.png",
+                    "type": "image/png",
+                    "sizes": "500x500",
+                    "purpose": "maskable",
                 },
             ],
             'share_target': {
@@ -2472,6 +2473,8 @@ async def get_manifest_json():
 @app.get('/opensearch.xml')
 async def get_opensearch_xml():
     webui_url = await Config.get('webui.url')
+    from open_webui.env import FRONTEND_APP_ROOT
+    webui_url = webui_url + '/' + FRONTEND_APP_ROOT
     xml_content = rf"""
     <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:moz="http://www.mozilla.org/2006/browser/search/">
     <ShortName>{app.state.WEBUI_NAME}</ShortName>

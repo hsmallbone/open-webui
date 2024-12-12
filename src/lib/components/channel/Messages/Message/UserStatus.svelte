@@ -13,6 +13,7 @@
 	import { goto } from '$app/navigation';
 	import Emoji from '$lib/components/common/Emoji.svelte';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	export let user = null;
 
@@ -27,7 +28,7 @@
 		});
 
 		if (res) {
-			goto(`/channels/${res.id}`);
+			goto(`${WEBUI_BASE_PATH}/channels/${res.id}`);
 		}
 	};
 </script>

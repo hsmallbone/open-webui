@@ -4,7 +4,7 @@
 	import { fade } from 'svelte/transition';
 	import DOMPurify from 'dompurify';
 	import { marked } from 'marked';
-	import { WEBUI_BASE_URL } from '$lib/constants';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	const dispatch = createEventDispatcher();
 	const i18n = getContext('i18n');
@@ -108,7 +108,7 @@
 				<div class="hidden md:flex group w-fit md:items-center">
 					<a
 						class="text-gray-700 dark:text-white text-xs font-semibold underline"
-						href="/"
+						href="{WEBUI_BASE_PATH}/"
 						target="_blank"
 					>
 						{$i18n.t('Learn More')}

@@ -7,6 +7,7 @@
 	import { imageGenerations, imageEdits } from '$lib/apis/images';
 
 	import Spinner from '$lib/components/common/Spinner.svelte';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	const i18n = getContext('i18n');
 
@@ -114,7 +115,7 @@
 
 	onMount(async () => {
 		if ($user?.role !== 'admin') {
-			await goto('/');
+			await goto(WEBUI_BASE_PATH + '/');
 			return;
 		}
 		loaded = true;

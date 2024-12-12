@@ -12,6 +12,7 @@
 	import Spinner from '$lib/components/common/Spinner.svelte';
 	import { updateSkillAccessGrants } from '$lib/apis/skills';
 	import { goto } from '$app/navigation';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	export let onSubmit: Function;
 	export let edit = false;
@@ -109,7 +110,7 @@
 									class="w-full text-left text-sm py-1.5 px-1 rounded-lg dark:text-gray-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-gray-850"
 									aria-label={$i18n.t('Back')}
 									on:click={() => {
-										goto('/workspace/skills');
+										goto(WEBUI_BASE_PATH + '/workspace/skills');
 									}}
 									type="button"
 								>

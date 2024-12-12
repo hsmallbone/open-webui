@@ -5,6 +5,7 @@
 	import dayjs from 'dayjs';
 	import localizedFormat from 'dayjs/plugin/localizedFormat';
 	import { getTimeRange } from '$lib/utils';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 	import ChevronUp from '$lib/components/icons/ChevronUp.svelte';
 	import ChevronDown from '$lib/components/icons/ChevronDown.svelte';
 	import Loader from '$lib/components/common/Loader.svelte';
@@ -152,7 +153,7 @@
 			<a
 				class=" w-full flex justify-between items-center rounded-lg text-sm py-2 px-3 hover:bg-gray-50 dark:hover:bg-gray-850"
 				draggable="false"
-				href={`/c/${chat.id}`}
+				href={`${WEBUI_BASE_PATH}/c/${chat.id}`}
 				on:click={() => (show = false)}
 			>
 				<div class="text-ellipsis line-clamp-1 w-full sm:basis-3/5">

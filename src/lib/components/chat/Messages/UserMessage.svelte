@@ -12,6 +12,7 @@
 	import Name from './Name.svelte';
 	import ProfileImage from './ProfileImage.svelte';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
+	import { WEBUI_DEFAULT_USER_ICON } from '$lib/constants';
 	import FileItem from '$lib/components/common/FileItem.svelte';
 	import Markdown from './Markdown.svelte';
 	import Image from '$lib/components/common/Image.svelte';

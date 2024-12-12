@@ -45,6 +45,7 @@
 	import FolderModal from './Folders/FolderModal.svelte';
 	import Emoji from '$lib/components/common/Emoji.svelte';
 	import Spinner from '$lib/components/common/Spinner.svelte';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	export let folderRegistry = {};
 	export let open = false;
@@ -564,7 +565,7 @@
 							await selectedFolder.set({ ...folders[folderId], ...folder });
 						}
 
-						await goto('/');
+						await goto(WEBUI_BASE_PATH + '/');
 
 						if ($mobile) {
 							showSidebar.set(!$showSidebar);

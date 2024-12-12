@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { WEBUI_BASE_URL } from '$lib/constants';
+	import { WEBUI_BASE_URL, WEBUI_DEFAULT_USER_ICON } from '$lib/constants';
 	import { safeImageUrl } from '$lib/utils/safeImageUrl';
 
 	export let className = 'size-8';

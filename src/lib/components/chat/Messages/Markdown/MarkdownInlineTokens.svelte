@@ -8,7 +8,7 @@
 
 	const i18n = getContext('i18n');
 
-	import { WEBUI_BASE_URL } from '$lib/constants';
+	import { WEBUI_BASE_URL, WEBUI_BASE_PATH } from '$lib/constants';
 	import { copyToClipboard, unescapeHtml } from '$lib/utils';
 
 	import Image from '$lib/components/common/Image.svelte';
@@ -34,7 +34,7 @@
 		try {
 			const url = new URL(href, window.location.origin);
 			if (url.origin === window.location.origin) {
-				const match = url.pathname.match(/^\/notes\/([^/]+)$/);
+				const match = url.pathname.replace(WEBUI_BASE_PATH, '').match(/^\/notes\/([^/]+)$/);
 				if (match) {
 					return match[1];
 				}
@@ -54,9 +54,9 @@
 			// Check if same origin and an in-app route
 			if (
 				url.origin === window.location.origin &&
-				(url.pathname.startsWith('/notes/') ||
-					url.pathname.startsWith('/c/') ||
-					url.pathname.startsWith('/channels/'))
+				(url.pathname.startsWith(WEBUI_BASE_PATH+'/notes/') ||
+					url.pathname.startsWith(WEBUI_BASE_PATH+'/c/') ||
+					url.pathname.startsWith(WEBUI_BASE_PATH+'/channels/'))
 			) {
 				e.preventDefault();
 				goto(url.pathname + url.search + url.hash);

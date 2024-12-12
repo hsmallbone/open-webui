@@ -99,6 +99,7 @@
 	import Cog6 from '../icons/Cog6.svelte';
 	import AiMenu from './AIMenu.svelte';
 	import AdjustmentsHorizontalOutline from '../icons/AdjustmentsHorizontalOutline.svelte';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	export let id: null | string = null;
 
@@ -195,7 +196,7 @@
 				$socket?.on('note-events', noteEventHandler);
 			}
 		} else {
-			goto('/');
+			goto(WEBUI_BASE_PATH + '/');
 			return;
 		}
 
@@ -624,7 +625,7 @@ ${content}
 		if (res) {
 			pinnedNotes.set(await getPinnedNoteList(localStorage.token).catch(() => []));
 			toast.success($i18n.t('Note deleted successfully'));
-			goto('/notes');
+			goto(WEBUI_BASE_PATH + '/notes');
 		} else {
 			toast.error($i18n.t('Failed to delete note'));
 		}

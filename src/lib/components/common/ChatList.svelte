@@ -2,7 +2,7 @@
 	import { getContext } from 'svelte';
 	import dayjs from 'dayjs';
 	import calendar from 'dayjs/plugin/calendar';
-	import { WEBUI_API_BASE_URL } from '$lib/constants';
+	import { WEBUI_API_BASE_URL, WEBUI_BASE_PATH } from '$lib/constants';
 	import Spinner from '$lib/components/common/Spinner.svelte';
 	import Loader from '$lib/components/common/Loader.svelte';
 	import ChevronUp from '$lib/components/icons/ChevronUp.svelte';
@@ -151,7 +151,7 @@
 					{/if}
 					<a
 						class={showUserInfo ? 'flex-1' : 'basis-3/5'}
-						href={shareUrl ? `/s/${chat.id}` : `/c/${chat.id}`}
+						href={shareUrl ? `${WEBUI_BASE_PATH}/s/${chat.id}` : `${WEBUI_BASE_PATH}/c/${chat.id}`}
 						on:click={() => onChatClick?.(chat.id)}
 					>
 						<div class="text-ellipsis line-clamp-1 w-full">

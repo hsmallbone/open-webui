@@ -18,6 +18,7 @@
 	import Visibility from '$lib/components/workspace/common/Visibility.svelte';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
 	import WebhooksModal from '$lib/components/channel/WebhooksModal.svelte';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	export let show = false;
 	export let onSubmit: Function = () => {};
@@ -121,8 +122,8 @@
 			toast.success($i18n.t('Channel deleted successfully'));
 			onUpdate();
 
-			if ($page.url.pathname === `/channels/${channelId}`) {
-				goto('/');
+			if ($page.url.pathname === `${WEBUI_BASE_PATH}/channels/${channelId}`) {
+				goto(WEBUI_BASE_PATH + '/');
 			}
 		}
 

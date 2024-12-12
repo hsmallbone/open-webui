@@ -7,6 +7,7 @@
 	import { updateUserSettings } from '$lib/apis/users';
 	import { getPinnedNoteList, toggleNotePinnedStatusById } from '$lib/apis/notes';
 	import Note from '$lib/components/icons/Note.svelte';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	const i18n = getContext('i18n');
 
@@ -67,7 +68,7 @@
 		>
 			<a
 				class="grow flex items-center gap-2.5 text-sm"
-				href={`/notes/${note.id}`}
+				href={`${WEBUI_BASE_PATH}/notes/${note.id}`}
 				on:click={() => {
 					selectedChatId = null;
 					chatId.set('');

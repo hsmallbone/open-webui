@@ -15,6 +15,7 @@
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
 	import LockClosed from '$lib/components/icons/LockClosed.svelte';
 	import AccessControlModal from '../common/AccessControlModal.svelte';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	let formElement = null;
 	let loading = false;
@@ -229,7 +230,7 @@ class Tools:
 									class="w-full text-left text-sm py-1.5 px-1 rounded-lg dark:text-gray-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-gray-850"
 									aria-label={$i18n.t('Back')}
 									on:click={() => {
-										goto('/workspace/tools');
+										goto(WEBUI_BASE_PATH + '/workspace/tools');
 									}}
 									type="button"
 								>

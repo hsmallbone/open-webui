@@ -61,7 +61,7 @@
 	import { getNoteById } from '$lib/apis/notes';
 	import { getSessionUser } from '$lib/apis/auths';
 
-	import { WEBUI_BASE_URL, WEBUI_API_BASE_URL, PASTED_TEXT_CHARACTER_LIMIT } from '$lib/constants';
+	import { WEBUI_BASE_URL, WEBUI_BASE_PATH, WEBUI_API_BASE_URL, PASTED_TEXT_CHARACTER_LIMIT } from '$lib/constants';
 	import { initiateOAuthRedirect } from '$lib/apis/configs';
 
 	import { createNoteHandler } from '../notes/utils';
@@ -851,7 +851,7 @@
 		if (res) {
 			// Clear the input content saved in session storage.
 			sessionStorage.removeItem('chat-input');
-			goto(`/notes/${res.id}`);
+			goto(`${WEBUI_BASE_PATH}/notes/${res.id}`);
 		}
 	};
 

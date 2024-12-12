@@ -37,6 +37,7 @@
 	import ChatBubbleOval from '$lib/components/icons/ChatBubbleOval.svelte';
 
 	import ModelItem from './ModelItem.svelte';
+	import { WEBUI_BASE_PATH, WEBUI_BASE_URL } from '$lib/constants';
 
 	const i18n = getContext('i18n');
 	const dispatch = createEventDispatcher();
@@ -706,7 +707,7 @@
 										{$i18n.t('Connect to an AI provider to start chatting')}
 									</div>
 									<a
-										href="/admin/settings/connections"
+										href="{WEBUI_BASE_PATH}/admin/settings/connections"
 										class="px-4 py-1.5 rounded-xl text-xs font-medium bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100 transition"
 										on:click={() => {
 											show = false;

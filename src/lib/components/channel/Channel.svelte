@@ -24,6 +24,7 @@
 	import Thread from './Thread.svelte';
 	import i18n from '$lib/i18n';
 	import Spinner from '../common/Spinner.svelte';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	export let id = '';
 
@@ -129,7 +130,7 @@
 				}
 			}
 		} else {
-			goto('/');
+			goto(WEBUI_BASE_PATH + '/');
 		}
 	};
 

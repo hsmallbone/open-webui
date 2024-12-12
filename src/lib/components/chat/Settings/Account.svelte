@@ -17,6 +17,8 @@
 	import User from '$lib/components/icons/User.svelte';
 	import UserProfileImage from './Account/UserProfileImage.svelte';
 
+	import { WEBUI_DEFAULT_USER_ICON } from '$lib/constants';
+
 	const i18n = getContext('i18n');
 
 	export let saveHandler: Function;

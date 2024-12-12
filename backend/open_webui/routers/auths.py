@@ -265,7 +265,7 @@ async def get_session_user(
         )
 
     user_permissions = await get_permissions(user.id, await Config.get('user.permissions'), db=db)
-
+    from open_webui.env import FRONTEND_APP_ROOT
     response_data = {
         'token': token,
         'token_type': 'Bearer',
@@ -274,7 +274,7 @@ async def get_session_user(
         'email': user.email,
         'name': user.name,
         'role': user.role,
-        'profile_image_url': user.profile_image_url,
+        'profile_image_url': FRONTEND_APP_ROOT + '/' + user.profile_image_url,
         'bio': user.bio,
         'gender': user.gender,
         'date_of_birth': user.date_of_birth,
@@ -1061,6 +1061,7 @@ async def add_user(
 
             expires_delta = parse_duration(await Config.get('auth.jwt_expiry'))
             token = create_token(data={'id': user.id}, expires_delta=expires_delta)
+            from open_webui.env import FRONTEND_APP_ROOT
             return {
                 'token': token,
                 'token_type': 'Bearer',
@@ -1068,7 +1069,7 @@ async def add_user(
                 'email': user.email,
                 'name': user.name,
                 'role': user.role,
-                'profile_image_url': f'/api/v1/users/{user.id}/profile/image',
+                'profile_image_url': f'{FRONTEND_APP_ROOT}/api/v1/users/{user.id}/profile/image',
             }
         else:
             raise HTTPException(500, detail=ERROR_MESSAGES.CREATE_USER_ERROR)

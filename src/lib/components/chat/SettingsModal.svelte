@@ -28,6 +28,7 @@
 	import Face from '../icons/Face.svelte';
 	import AppNotification from '../icons/AppNotification.svelte';
 	import UserBadgeCheck from '../icons/UserBadgeCheck.svelte';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	const i18n = getContext('i18n');
 
@@ -860,14 +861,14 @@
 				{/if}
 				{#if $user?.role === 'admin'}
 					<a
-						href="/admin/settings"
+						href="{WEBUI_BASE_PATH}/admin/settings"
 						draggable="false"
 						class="px-0.5 md:px-2.5 py-1 min-w-fit rounded-xl flex-1 md:flex-none md:mt-auto flex select-none text-left transition {$settings?.highContrastMode
 							? 'hover:bg-gray-200 dark:hover:bg-gray-800'
 							: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'}"
 						on:click={async (e) => {
 							e.preventDefault();
-							await goto('/admin/settings');
+							await goto(WEBUI_BASE_PATH + '/admin/settings');
 							show = false;
 						}}
 					>

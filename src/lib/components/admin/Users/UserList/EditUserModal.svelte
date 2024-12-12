@@ -13,6 +13,7 @@
 	import XMark from '$lib/components/icons/XMark.svelte';
 	import SensitiveInput from '$lib/components/common/SensitiveInput.svelte';
 	import UserProfileImage from '$lib/components/chat/Settings/Account/UserProfileImage.svelte';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	const i18n = getContext('i18n');
 	const dispatch = createEventDispatcher();
@@ -122,9 +123,9 @@
 														class="px-1.5 py-0.5 rounded-xl bg-gray-100 dark:bg-gray-850 text-xs"
 													>
 														<a
-															href={'/admin/users/groups?id=' + userGroup.id}
+															href={WEBUI_BASE_PATH + '/admin/users/groups?id=' + userGroup.id}
 															on:click|preventDefault={() =>
-																goto('/admin/users/groups?id=' + userGroup.id)}
+																goto(WEBUI_BASE_PATH + '/admin/users/groups?id=' + userGroup.id)}
 														>
 															{userGroup.name}
 														</a>

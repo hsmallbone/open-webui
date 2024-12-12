@@ -34,6 +34,7 @@
 	import Switch from '../common/Switch.svelte';
 	import SkillMenu from './Skills/SkillMenu.svelte';
 	import Pagination from '../common/Pagination.svelte';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	let shiftKey = false;
 	let loaded = false;
@@ -107,7 +108,7 @@
 				id: `${_skill.id}_clone`,
 				name: `${_skill.name} (Clone)`
 			});
-			goto('/workspace/skills/create');
+			goto(WEBUI_BASE_PATH + '/workspace/skills/create');
 		}
 	};
 
@@ -252,7 +253,7 @@
 											is_active: true,
 											access_grants: []
 										});
-										goto('/workspace/skills/create');
+										goto(WEBUI_BASE_PATH + '/workspace/skills/create');
 									}
 								};
 								reader.readAsText(file);
@@ -301,7 +302,7 @@
 				{#if $user?.role === 'admin' || $user?.permissions?.workspace?.skills}
 					<a
 						class=" px-2 py-1.5 rounded-xl bg-black text-white dark:bg-white dark:text-black transition font-medium text-sm flex items-center"
-						href="/workspace/skills/create"
+						href="{WEBUI_BASE_PATH}/workspace/skills/create"
 					>
 						<Plus className="size-3" strokeWidth="2.5" />
 
@@ -384,7 +385,7 @@
 							{#if skill.write_access}
 								<a
 									class=" flex flex-1 space-x-3.5 cursor-pointer w-full"
-									href={`/workspace/skills/edit?id=${encodeURIComponent(skill.id)}`}
+									href={`${WEBUI_BASE_PATH}/workspace/skills/edit?id=${encodeURIComponent(skill.id)}`}
 								>
 									<div class="flex items-center text-left">
 										<div class=" flex-1 self-center">
@@ -470,7 +471,9 @@
 									{:else}
 										<SkillMenu
 											editHandler={() => {
-												goto(`/workspace/skills/edit?id=${encodeURIComponent(skill.id)}`);
+												goto(
+													`${WEBUI_BASE_PATH}/workspace/skills/edit?id=${encodeURIComponent(skill.id)}`
+												);
 											}}
 											cloneHandler={() => {
 												cloneHandler(skill);

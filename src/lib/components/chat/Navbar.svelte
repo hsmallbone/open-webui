@@ -39,6 +39,7 @@
 	import ChatCheck from '../icons/ChatCheck.svelte';
 	import Knobs from '../icons/Knobs.svelte';
 	import { WEBUI_API_BASE_URL } from '$lib/constants';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	const i18n = getContext('i18n');
 
@@ -149,7 +150,7 @@
 										}
 
 										if ($page.url.pathname !== '/') {
-											await goto('/');
+											await goto(WEBUI_BASE_PATH + '/');
 										}
 
 										// add 'temporary-chat=true' to the URL

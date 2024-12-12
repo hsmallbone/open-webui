@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { WEBUI_BASE_URL } from '$lib/constants';
 	import { settings, playingNotificationSound, isLastActiveTab } from '$lib/stores';
 	import DOMPurify from 'dompurify';
 	import { marked } from 'marked';
 
 	import { createEventDispatcher, onMount } from 'svelte';
 	import XMark from '$lib/components/icons/XMark.svelte';
+
+	import { WEBUI_BASE_URL } from '$lib/constants';
 
 	const dispatch = createEventDispatcher();
 
@@ -72,7 +73,7 @@
 			if (!$playingNotificationSound && $isLastActiveTab) {
 				playingNotificationSound.set(true);
 
-				const audio = new Audio(`/audio/notification.mp3`);
+				const audio = new Audio(WEBUI_BASE_URL + `/audio/notification.mp3`);
 				audio.play().finally(() => {
 					// Ensure the global state is reset after the sound finishes
 					playingNotificationSound.set(false);

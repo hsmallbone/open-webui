@@ -5,6 +5,7 @@
 	import { goto } from '$app/navigation';
 	import { user } from '$lib/stores';
 	import { page } from '$app/stores';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	import UserList from './Users/UserList.svelte';
 	import Groups from './Users/Groups.svelte';
@@ -34,7 +35,7 @@
 
 	onMount(async () => {
 		if ($user?.role !== 'admin') {
-			await goto('/');
+			await goto(WEBUI_BASE_PATH + '/');
 		}
 
 		loaded = true;
@@ -62,7 +63,7 @@
 	>
 		<a
 			id="overview"
-			href="/admin/users/overview"
+			href="{WEBUI_BASE_PATH}/admin/users/overview"
 			draggable="false"
 			class="px-0.5 py-1 min-w-fit rounded-lg lg:flex-none flex text-right transition select-none {selectedTab ===
 			'overview'
@@ -86,7 +87,7 @@
 
 		<a
 			id="groups"
-			href="/admin/users/groups"
+			href="{WEBUI_BASE_PATH}/admin/users/groups"
 			draggable="false"
 			class="px-0.5 py-1 min-w-fit rounded-lg lg:flex-none flex text-right transition select-none {selectedTab ===
 			'groups'

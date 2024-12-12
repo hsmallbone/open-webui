@@ -41,6 +41,7 @@
 	import TagSelector from '../workspace/common/TagSelector.svelte';
 	import { capitalizeFirstLetter } from '$lib/utils';
 	import Spinner from '../common/Spinner.svelte';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	const i18n = getContext('i18n');
 
@@ -138,7 +139,7 @@
 				id: `${_function.id}_clone`,
 				name: `${_function.name} (${$i18n.t('Clone')})`
 			});
-			goto('/admin/functions/create');
+			goto(WEBUI_BASE_PATH + '/admin/functions/create');
 		}
 	};
 
@@ -263,7 +264,7 @@
 		sessionStorage.function = JSON.stringify({
 			...func
 		});
-		goto('/admin/functions/create');
+		goto(WEBUI_BASE_PATH + '/admin/functions/create');
 	}}
 />
 
@@ -333,7 +334,7 @@
 						{/if}
 						<AddFunctionMenu
 							createHandler={() => {
-								goto('/admin/functions/create');
+								goto(WEBUI_BASE_PATH + '/admin/functions/create');
 							}}
 							importFromLinkHandler={() => {
 								showImportModal = true;
@@ -425,7 +426,7 @@
 						>
 							<a
 								class=" flex flex-1 space-x-3.5 cursor-pointer w-full"
-								href={`/admin/functions/edit?id=${encodeURIComponent(func.id)}`}
+								href={`${WEBUI_BASE_PATH}/admin/functions/edit?id=${encodeURIComponent(func.id)}`}
 							>
 								<div class="flex items-center text-left">
 									<div class=" flex-1 self-center pl-1">
@@ -532,7 +533,9 @@
 									<FunctionMenu
 										{func}
 										editHandler={() => {
-											goto(`/admin/functions/edit?id=${encodeURIComponent(func.id)}`);
+											goto(
+												`${WEBUI_BASE_PATH}/admin/functions/edit?id=${encodeURIComponent(func.id)}`
+											);
 										}}
 										shareHandler={() => {
 											shareHandler(func);

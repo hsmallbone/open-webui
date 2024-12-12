@@ -656,7 +656,8 @@ async def update_user_by_id(
             update_data['email'] = form_data.email.lower()
             await Auths.update_email_by_id(user_id, form_data.email.lower(), db=db)
         if form_data.profile_image_url is not None:
-            update_data['profile_image_url'] = form_data.profile_image_url
+            from open_webui.env import FRONTEND_APP_ROOT
+            update_data['profile_image_url'] = form_data.profile_image_url.replace(FRONTEND_APP_ROOT, '')
 
         if update_data:
             updated_user = await Users.update_user_by_id(

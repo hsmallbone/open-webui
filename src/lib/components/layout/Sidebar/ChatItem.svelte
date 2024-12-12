@@ -42,6 +42,7 @@
 	import GarbageBin from '$lib/components/icons/GarbageBin.svelte';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
 	import ArchiveBox from '$lib/components/icons/ArchiveBox.svelte';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 	import DragGhost from '$lib/components/common/DragGhost.svelte';
 	import Check from '$lib/components/icons/Check.svelte';
 	import XMark from '$lib/components/icons/XMark.svelte';
@@ -163,7 +164,7 @@
 		});
 
 		if (res) {
-			goto(`/c/${res.id}`);
+			goto(WEBUI_BASE_PATH + `/c/${res.id}`);
 
 			currentChatPage.set(1);
 			await chats.set(await getChatList(localStorage.token, $currentChatPage));
@@ -185,7 +186,7 @@
 		if (res) {
 			tags.set(await getAllTags(localStorage.token));
 			if ($chatId === id) {
-				await goto('/');
+				await goto(WEBUI_BASE_PATH + '/');
 
 				await chatId.set('');
 				await tick();
@@ -207,7 +208,7 @@
 			await archiveChatById(localStorage.token, id);
 
 			if ($chatId === id) {
-				await goto('/');
+				await goto(WEBUI_BASE_PATH + '/');
 				chatId.set('');
 			}
 
@@ -513,7 +514,7 @@
 						? 'bg-gray-100 dark:bg-gray-900 selected'
 						: 'bg-gray-100 dark:bg-gray-950 selected'
 					: ' group-hover:bg-gray-100 dark:group-hover:bg-gray-950'}  whitespace-nowrap text-ellipsis"
-			href="/c/{id}"
+			href="{WEBUI_BASE_PATH}/c/{id}"
 			on:click={() => {
 				dispatch('select');
 

@@ -17,6 +17,7 @@ const config = {
 			assets: 'build',
 			fallback: 'index.html'
 		}),
+		appDir: '@098555d4-163c-464d-9936-98d084e61beb@/app',
 		// poll for new version name every 60 seconds (to trigger reload mechanic in +layout.svelte)
 		version: {
 			name: (() => {

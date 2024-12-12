@@ -47,6 +47,7 @@
 	import ArchiveBox from '../icons/ArchiveBox.svelte';
 	import GarbageBin from '../icons/GarbageBin.svelte';
 	import { generateTitle } from '$lib/apis';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 	dayjs.extend(calendar);
 	dayjs.extend(localizedFormat);
 
@@ -104,7 +105,7 @@
 			chatList = chatList?.filter((c) => c.id !== id) ?? null;
 
 			if ($currentChatId === id) {
-				await goto('/');
+				await goto(WEBUI_BASE_PATH+'/');
 				currentChatId.set('');
 			}
 
@@ -126,7 +127,7 @@
 			tags.set(await getAllTags(localStorage.token));
 
 			if ($currentChatId === id) {
-				await goto('/');
+				await goto(WEBUI_BASE_PATH+'/');
 				currentChatId.set('');
 			}
 
@@ -257,7 +258,7 @@
 		{
 			label: $i18n.t('Start a new conversation'),
 			onClick: async () => {
-				await goto(`/${query ? `?q=${query}` : ''}`);
+				await goto(`${WEBUI_BASE_PATH}/${query ? `?q=${query}` : ''}`);
 				show = false;
 				onClose();
 			},
@@ -514,7 +515,7 @@
 						{
 							label: $i18n.t('Create a new note'),
 							onClick: async () => {
-								await goto(`/notes?content=${query}`);
+								await goto(`${WEBUI_BASE_PATH}/notes?content=${query}`);
 								show = false;
 								onClose();
 							},
@@ -722,10 +723,10 @@
 							{:else}
 								<a
 									class="flex-1 min-w-0"
-									href="/c/{chat.id}"
+									href="{WEBUI_BASE_PATH}/c/{chat.id}"
 									draggable="false"
 									on:click={async () => {
-										await goto(`/c/${chat.id}`);
+										await goto(`${WEBUI_BASE_PATH}/c/${chat.id}`);
 										show = false;
 										onClose();
 									}}

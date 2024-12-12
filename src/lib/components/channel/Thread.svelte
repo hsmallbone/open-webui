@@ -11,6 +11,7 @@
 	import { onDestroy, onMount, tick, getContext } from 'svelte';
 	import { toast } from 'svelte-sonner';
 	import Spinner from '../common/Spinner.svelte';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	const i18n = getContext('i18n');
 
@@ -58,7 +59,7 @@
 			await tick();
 			scrollToBottom();
 		} else {
-			goto('/');
+			goto(WEBUI_BASE_PATH + '/');
 		}
 	};
 

@@ -9,6 +9,7 @@
 	import { getOutputText } from '../Messages/structuredOutput';
 
 	const i18n = getContext('i18n');
+	import { WEBUI_DEFAULT_USER_ICON } from '$lib/constants';
 
 	type $$Props = NodeProps;
 	export let data: $$Props['data'];

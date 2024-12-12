@@ -5,6 +5,7 @@
 
 	import Leaderboard from './Evaluations/Leaderboard.svelte';
 	import Feedbacks from './Evaluations/Feedbacks.svelte';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	const i18n = getContext('i18n');
 
@@ -56,7 +57,7 @@
 		>
 			<a
 				id="leaderboard"
-				href="/admin/evaluations/leaderboard"
+				href="{WEBUI_BASE_PATH}/admin/evaluations/leaderboard"
 				draggable="false"
 				class="px-0.5 py-1 min-w-fit rounded-lg lg:flex-none flex text-right transition select-none {selectedTab ===
 				'leaderboard'
@@ -82,7 +83,7 @@
 
 			<a
 				id="feedback"
-				href="/admin/evaluations/feedback"
+				href="{WEBUI_BASE_PATH}/admin/evaluations/feedback"
 				draggable="false"
 				class="px-0.5 py-1 min-w-fit rounded-lg lg:flex-none flex text-right transition select-none {selectedTab ===
 				'feedback'

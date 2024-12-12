@@ -9,6 +9,8 @@
 	import { updateChannelById, updateChannelMemberActiveStatusById } from '$lib/apis/channels';
 	import { WEBUI_API_BASE_URL } from '$lib/constants';
 
+	import { WEBUI_BASE_PATH } from '$lib/constants';
+
 	import Cog6 from '$lib/components/icons/Cog6.svelte';
 	import ChannelModal from './ChannelModal.svelte';
 	import Lock from '$lib/components/icons/Lock.svelte';
@@ -75,7 +77,8 @@
 	id="sidebar-channel-item"
 	bind:this={itemElement}
 	class=" w-full {className} rounded-xl flex relative group hover:bg-gray-100 dark:hover:bg-gray-900 {$page
-		.url.pathname === `/channels/${channel.id}`
+		.url.pathname ===
+	WEBUI_BASE_PATH + `/channels/${channel.id}`
 		? 'bg-gray-100 dark:bg-gray-900 selected'
 		: ''} {channel?.type === 'dm' ? 'px-1 py-[3px]' : 'p-1'}  {channel?.unread_count > 0
 		? 'font-medium dark:text-white text-black'
@@ -83,7 +86,7 @@
 >
 	<a
 		class=" w-full flex justify-between"
-		href="/channels/{channel.id}"
+		href="{WEBUI_BASE_PATH}/channels/{channel.id}"
 		on:click={() => {
 			console.log(channel);
 

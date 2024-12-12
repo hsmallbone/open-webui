@@ -12,7 +12,7 @@
 
 	import { get, type Unsubscriber, type Writable } from 'svelte/store';
 	import type { i18n as i18nType } from 'i18next';
-	import { WEBUI_BASE_URL } from '$lib/constants';
+	import { WEBUI_BASE_URL, WEBUI_BASE_PATH } from '$lib/constants';
 	import equal from 'fast-deep-equal';
 
 	import {
@@ -310,7 +310,7 @@
 			const chatInput = document.getElementById('chat-input');
 			chatInput?.focus();
 		} else {
-			await goto('/');
+			await goto(WEBUI_BASE_PATH + '/');
 		}
 	};
 
@@ -1458,7 +1458,7 @@
 		await showArtifacts.set(false);
 
 		if ($page.url.pathname.includes('/c/')) {
-			window.history.replaceState(history.state, '', `/`);
+			window.history.replaceState(history.state, '', WEBUI_BASE_PATH + `/`);
 		}
 
 		autoScroll = true;
@@ -1592,7 +1592,7 @@
 		}
 
 		chat = await getChatById(localStorage.token, $chatId).catch(async (error) => {
-			await goto('/');
+			await goto(WEBUI_BASE_PATH + '/');
 			return null;
 		});
 
@@ -2931,7 +2931,7 @@
 			_chatId = chat.id;
 			await chatId.set(_chatId);
 
-			window.history.replaceState(history.state, '', `/c/${_chatId}`);
+			window.history.replaceState(history.state, '', `${WEBUI_BASE_PATH}/c/${_chatId}`);
 
 			await tick();
 
@@ -3031,7 +3031,7 @@
 			await archiveChatById(localStorage.token, id);
 			currentChatPage.set(1);
 			initNewChat();
-			await goto('/');
+			await goto(WEBUI_BASE_PATH + '/');
 			chats.set(await getChatList(localStorage.token, $currentChatPage));
 			pinnedChats.set(await getPinnedChatList(localStorage.token));
 			toast.success($i18n.t('Chat archived.'));
@@ -3068,7 +3068,7 @@
 			if (res) {
 				currentChatPage.set(1);
 				initNewChat();
-				await goto('/');
+				await goto(WEBUI_BASE_PATH + '/');
 				chats.set(await getChatList(localStorage.token, $currentChatPage));
 				pinnedChats.set(await getPinnedChatList(localStorage.token));
 				allTags.set(await getAllTags(localStorage.token));
@@ -3227,7 +3227,7 @@
 									chatId.set(savedChat.id);
 									chats.set(await getChatList(localStorage.token, $currentChatPage));
 
-									await goto(`/c/${savedChat.id}`);
+									await goto(WEBUI_BASE_PATH + `/c/${savedChat.id}`);
 									toast.success($i18n.t('Conversation saved successfully'));
 								}
 							} catch (error) {

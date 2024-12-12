@@ -24,6 +24,7 @@
 	import Link from '../icons/Link.svelte';
 	import LinkSlash from '../icons/LinkSlash.svelte';
 	import Clipboard from '../icons/Clipboard.svelte';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	const i18n = getContext('i18n');
 
@@ -284,7 +285,9 @@
 									{/if}
 									<a
 										class={showUserInfo ? 'flex-1' : 'basis-3/5'}
-										href={shareUrl ? `/s/${chat.id}` : `/c/${chat.id}`}
+										href={shareUrl
+											? `${WEBUI_BASE_PATH}/s/${chat.id}`
+											: `${WEBUI_BASE_PATH}/c/${chat.id}`}
 										on:click={() => (show = false)}
 									>
 										<div class="text-ellipsis line-clamp-1 w-full">
@@ -451,7 +454,7 @@
 														'border-b'} border-gray-50 dark:border-gray-850/30 text-xs"
 												>
 													<td class="px-3 py-1 w-2/3">
-														<a href="/c/{chat.id}" target="_blank">
+														<a href="{WEBUI_BASE_PATH}/c/{chat.id}" target="_blank">
 															<div class=" hover:underline line-clamp-1">
 																{chat.title}
 															</div>

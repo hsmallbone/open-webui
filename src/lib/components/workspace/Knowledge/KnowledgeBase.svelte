@@ -60,7 +60,7 @@
 	import AddTextContentModal from './KnowledgeBase/AddTextContentModal.svelte';
 	import NewDirectoryModal from './KnowledgeBase/NewDirectoryModal.svelte';
 	import KnowledgeBreadcrumbs from './KnowledgeBase/KnowledgeBreadcrumbs.svelte';
-
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 	import SyncConfirmDialog from '../../common/ConfirmDialog.svelte';
 	import ConfirmDialog from '../../common/ConfirmDialog.svelte';
 	import Drawer from '$lib/components/common/Drawer.svelte';
@@ -1121,7 +1121,7 @@
 			}
 			knowledgeId = knowledge?.id;
 		} else {
-			goto('/workspace/knowledge');
+			goto(WEBUI_BASE_PATH + '/workspace/knowledge');
 		}
 
 		const dropZone = document.querySelector('body');

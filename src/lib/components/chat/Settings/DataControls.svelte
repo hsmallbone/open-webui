@@ -28,6 +28,7 @@
 	import SharedChatsModal from '$lib/components/layout/SharedChatsModal.svelte';
 	import FilesModal from '$lib/components/layout/FilesModal.svelte';
 	import ConfirmDialog from '$lib/components/common/ConfirmDialog.svelte';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	const i18n = getContext('i18n');
 
@@ -110,7 +111,7 @@
 	};
 
 	const archiveAllChatsHandler = async () => {
-		await goto('/');
+		await goto(WEBUI_BASE_PATH + '/');
 		await archiveAllChats(localStorage.token).catch((error) => {
 			toast.error(`${error}`);
 		});
@@ -122,7 +123,7 @@
 	};
 
 	const deleteAllChatsHandler = async () => {
-		await goto('/');
+		await goto(WEBUI_BASE_PATH + '/');
 		await deleteAllChats(localStorage.token).catch((error) => {
 			toast.error(`${error}`);
 		});
@@ -145,7 +146,7 @@
 	onUpdate={handleArchivedChatsChange}
 	onDelete={(id) => {
 		if ($chatId === id) {
-			goto('/');
+			goto(WEBUI_BASE_PATH + '/');
 			chatId.set('');
 		}
 	}}

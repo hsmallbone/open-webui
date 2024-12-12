@@ -49,6 +49,7 @@
 	import AdminViewSelector from './Models/AdminViewSelector.svelte';
 	import TagSelector from '$lib/components/workspace/common/TagSelector.svelte';
 	import Pagination from '$lib/components/common/Pagination.svelte';
+	import { WEBUI_BASE_PATH } from '$lib/constants';
 
 	type ModelListItem = { id: string; name?: string };
 
@@ -315,7 +316,7 @@
 			id: `${model.id}-clone`,
 			name: `${model.name} (Clone)`
 		});
-		goto('/workspace/models/create');
+		goto(WEBUI_BASE_PATH + '/workspace/models/create');
 	};
 
 	const exportModelHandler = async (model) => {

@@ -11,7 +11,7 @@
 		updateChatAccessGrants
 	} from '$lib/apis/chats';
 	import { copyToClipboard } from '$lib/utils';
-
+	import {WEBUI_BASE_PATH} from '$lib/constants';
 	import Modal from '../common/Modal.svelte';
 	import Link from '../icons/Link.svelte';
 	import XMark from '$lib/components/icons/XMark.svelte';
@@ -128,7 +128,7 @@
 			<div class="px-5 pt-4 pb-5 w-full flex flex-col">
 				<div class="text-sm dark:text-gray-300">
 					{#if chat.share_id}
-						<a href="/s/{chat.share_id}" target="_blank"
+						<a href="{WEBUI_BASE_PATH+'/s/'+chat.share_id}" target="_blank"
 							>{$i18n.t('You have shared this chat')}
 							<span class=" underline">{$i18n.t('before')}</span>.</a
 						>
