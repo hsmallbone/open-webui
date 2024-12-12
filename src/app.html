@@ -1,6 +1,39 @@
 <!doctype html>
 <html lang="en">
 	<head>
+		<script>
+			(function() {
+				const prefix = "/@098555d4-163c-464d-9936-98d084e61beb@";
+
+				function rewriteUrl(url) {
+					const { pathname, search } = new URL(url, location.origin);
+					return `${prefix}${pathname}${search}`;
+				}
+			
+				XMLHttpRequest.prototype.open = function(method, url, ...rest) {
+					arguments[1] = rewriteUrl(url);
+					return XMLHttpRequest.prototype.open.original.call(this, ...arguments);
+				}.original = XMLHttpRequest.prototype.open;
+			
+				const originalFetch = fetch;
+				window.fetch = (input, init) => {
+					let url = typeof input === 'object' ? input.url : input;
+					url = rewriteUrl(url);
+					if (typeof input === 'object') input.url = url;
+					return originalFetch(input, init);
+				};
+			
+				const interceptHistory = method => {
+					const original = history[method];
+					history[method] = function(state, title, url) {
+						if (url) arguments[2] = rewriteUrl(url);
+						return original.apply(this, arguments);
+					};
+				};
+				interceptHistory('pushState');
+				interceptHistory('replaceState');
+			})();
+		</script>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
 		<link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />

@@ -1,6 +1,23 @@
 #!/usr/bin/env bash
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+KEEP_ORIGINAL_APP="${KEEP_ORIGINAL_APP:-false}"
+ROOT_PATH=${ROOT_PATH:-_app}
+MARK=@098555d4-163c-464d-9936-98d084e61beb@
+cd "$SCRIPT_DIR"/../build || exit 1
+if ! [ -d ${ROOT_PATH} ]; then # Create a relocated copy of the frontend based on the mark
+    if ${KEEP_ORIGINAL_APP}; then
+        mkdir -p ${ROOT_PATH}
+        cp -rp ${MARK}/app ${ROOT_PATH}/app
+    else
+        mkdir -p "$(dirname "$ROOT_PATH")"
+        mv ${MARK} ${ROOT_PATH}
+    fi
+    ln -s ${ROOT_PATH}/app
+    find ${ROOT_PATH}/app/immutable/entry -type f -exec sed -i "s~${MARK}~${ROOT_PATH}/app~g"   '{}' \;
+    find ${ROOT_PATH}/ -type f -exec sed -i "s~${MARK}~${ROOT_PATH}~g"   '{}' \;
+    sed "s~${MARK}~${ROOT_PATH}~g" index.html.am > index.html
+fi
 cd "$SCRIPT_DIR" || exit
 
 KEY_FILE=.webui_secret_key

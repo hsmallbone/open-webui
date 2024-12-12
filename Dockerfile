@@ -162,6 +162,7 @@ COPY --chown=$UID:$GID --from=build /app/package.json /app/package.json
 
 # copy backend files
 COPY --chown=$UID:$GID ./backend .
+RUN cp -p /app/build/index.html /app/build/index.html.am ; chown -R $UID:$GID /app
 
 EXPOSE 8080
 
